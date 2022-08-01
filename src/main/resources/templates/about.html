@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Qorap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" th:href="@{/}" href="#!"><img th:src="@{/images/newLogo.png}" src="../static/images/newLogo.png" alt="" width="150" height="auto"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link" th:href="@{/about}" href="#!">About</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/shop}" href="#!">Shop</a></li>
+            </ul>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item active">
+                        <a class="nav-link" sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin}" href="#">admin</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">login</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">logout</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/cart}" href="#">cart</a>
+                    </li>
+                    <li class="nav-item active">
+                        <span class="nav-link" th:text="${cartCount}">0</span>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<header class="bg-success py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Shop in style</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Straight way to ECO comfort.</p>
+        </div>
+    </div>
+</header>
+
+<div class="w3-content w3-padding" style="max-width:1564px">
+    <div class="w3-container w3-padding-32" id="about">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+        <p>The reason why it was decided to develop this type of project is because, now, people love comfort, many of us don’t want to left their comfort zones. We want to make our lives more comfortable, by developing this project, which will give us opportunity to buy simple grocery products without leaving home. Especially it will be actual in CIS countries. Our idea is to make a simple and well designed boxes, by which your product will be delivered. Purpose of this box to give you chance to not pay for delivery, you will pay only for first order. Also this boxes will decorate your home.</p>
+    </div>
+
+    <div class="w3-row-padding w3-container">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Founders</h3>
+        <div class="w3-col l4 m6 w3-margin-bottom text-center">
+            <img th:src="@{/images/nurgeldi.jpg}" src="../static/images/nurgeldi.jpg" alt="Nurgeldi" style="width:70%" class="rounded-circle">
+            <h3>Nurgeldi Zharmukhanbet</h3>
+            <p class="w3-opacity">Manager</p>
+        </div>
+        <div class="w3-col l4 m6 w3-margin-bottom text-center">
+            <img th:src="@{/images/ilyas.jpg}" src="../static/images/ilyas.jpg" alt="Ilyas" style="width:70%" class="rounded-circle">
+            <h3>Ilyas Dyussembayev</h3>
+            <p class="w3-opacity">Web Developer</p>
+        </div>
+
+    </div>
+
+    <!-- Contact Section -->
+    <div class="w3-container w3-padding-32" id="contact">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
+        <p>Lets get in touch and talk about your next project.</p>
+        <form action="/action_page.php" target="_blank">
+            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
+            <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
+            <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
+            <button class="w3-button w3-section bg-success text-white" type="submit">
+                <i>Send Message</i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-success text-white mt-auto">
+    <!-- Section: Social media -->
+    <section
+            class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+    >
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+            <a href="https://www.instagram.com/moodiilyas/" class="me-4 text-reset">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://github.com/Ilyas2805" class="me-4 text-reset">
+                <i class="bi bi-github"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UCYf0mvJbvp6AeU_e2ohiIRg/featured" class="me-4 text-reset">
+                <i class="bi bi-youtube"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        <i class="bi bi-x-diamond-fill"></i> Qorap Delivery
+                    </h6>
+                    <p>
+                        Box delvery is the key to ECO comfort.
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Contact
+                    </h6>
+                    <p><i class="bi bi-house-fill"></i> Nur-Sultan, NQZ 010000, Kazakhstan</p>
+                    <p>
+                        <i class="bi bi-envelope-fill"></i>
+                        support@QorapDelivery.com
+                    </p>
+                    <p><i class="bi bi-telephone-fill"></i> +7 775 544 60 35</p>
+                    <p><i class="bi bi-telephone-fill"></i> +7 777 666 55 44</p>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2022 Copyright:
+        <a class="text-reset fw-bold" href="https://qorapdelivery.com/">QorapDelivery.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
